@@ -25,3 +25,15 @@ def register(request):
 def contacto(request):
 
     return render(request, 'pages-contact.html')
+
+def escaneos(request):
+
+    return render(request, 'escaneos.html')
+
+def incidentes(request):
+
+    return render(request, 'incidentes.html')
+
+def trabajadores(request):
+
+    return render(request, 'trabajadores.html')

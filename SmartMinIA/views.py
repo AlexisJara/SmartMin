@@ -37,3 +37,4 @@ def incidentes(request):
 def trabajadores(request):
 
     return render(request, 'trabajadores.html')
+

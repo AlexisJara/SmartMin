@@ -1,0 +1,118 @@
+Este manual tiene como fin dar instrucciones sobre cómo utilizar esta plantilla.
+
+
+
+1.- para llamar plantillas:
+
+para llamar plantillas y sus CSS, JS se debe utilizar {% load static %}, esto para que 
+se logre cargar la información completa del html y sus estilos, se debe realizar el llamado
+en "Head".
+
+2.- Realizar funciones Backend:
+
+para realizar funciones Backend por ejemplo Inicio de sesion, 
+estas deben ser realizadas en el archivo views.py del proyecto,
+estas deben coincidir con los "path" de las url.
+
+3.- llamar Navbar y sidebar en las demás plantillas:
+
+estas se deben llamar mediante la instrucción {% block template %} y al final del 
+archivo Html utilizar el comando {% endblock %}, esto con el fin de cargar en cada 
+plantilla el archivo base de los Navbars.
+
+4.- Armar modelos de datos (BD):
+
+estas clases deben ser desarrolladas en el archivo models.py,
+allí se deben insertar todas las clases que se requieran (tablas).
+
+5.- Conectar base de datos local:
+
+en el archivo settings.py se debe configurar el puerto y la base de datos a utilizar,
+como se muestra acá :
+
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'domochicken', --- nombre de Schema en MySql 
+        'USER': 'domochicken', --- nombre de usuario en MySql
+        'PASSWORD': '123', --- Contraseña indicada en la creación del usuario en MySql
+        'HOST': 'localhost', --- Host
+        'PORT': '3306', --- Puerto de MySql
+    }
+}
+
+También debe configurarse la aplicación e indicarle al programa que está instalada,
+como indica este ejemplo:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'SmartMinIA',
+
+]
+
+cabe desyacar que la base de datos se puede cambiar por la que usted prefiera.
+
+
+6.- Llamado de links:
+
+los links deben ser llamados de esta forma:   <link href="{% static 'img/favicon.png' %}" rel="icon">
+debido a que Django tiene un comando especial llamado Static que se encarga de cargar todos
+los archivos a llamar.
+
+ejemplo de llamado de css:  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+los archivos js deben ser llamados al final de el archivo html de esta manera:
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+  7.- comandos: 
+
+  para realizar migraciones hacia la Bd, en este caso MySql (funciona de la misma manera en cualquier otra)
+  debe utilizar el comando: 
+  
+  python manage.py makemigrations 
+
+  luego 
+
+  python manage.py migrate
+
+  para realizar las migraciones de tablas y datos dentro del Schema en MySql y a su vez en 
+  el administrador de django
+
+8.- realizar creación de super usuario del administrador de django:
+
+el comando para realizar la creacion del super usuario de django es 
+
+python manage.py createsuperuser 
+
+esto para ver el administrador del localhost de django, en él se mostrarán las tablas
+migradas del proyecto 
+
+
+9.- correr servidor:
+
+para correr el servidor se debe utilizar el comando: 
+
+python manage.py runserver (asegure que las migraciones estén realizadas)
+
+
